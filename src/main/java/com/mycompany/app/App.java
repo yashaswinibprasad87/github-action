@@ -18,5 +18,6 @@ public class App {
         System.out.println("Hello12");
         return MESSAGE;
         // COmment 1
+        //Comment 2 in feature/test
     }
 }
