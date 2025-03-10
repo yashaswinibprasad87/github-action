@@ -15,7 +15,7 @@ public class App {
 
     public String getMessage() {
         System.out.println("Hello");
-        System.out.println("Hello12");
+        System.out.println("Hello12dcscsdcsdcscscscscdscscdscsdcsdcscscsdcsdcscscscscsdcsdcsdcscscsdc");
         return MESSAGE;
         // COmment 1
         //Comment 2 in feature/test
