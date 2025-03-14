@@ -1,0 +1,28 @@
+name: Job-Sequence
+
+on:
+    workflow_dispatch:
+
+jobs:
+    
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout Code
+              uses: actions/checkout@v4
+            - name: Build
+              run: echo "Compile & Build Project"          
+    
+    test:
+        needs: build
+        runs-on: ubuntu-latest
+        steps:
+            - name: Test
+              run: echo "Run Test Cases"
+              
+    deploy:
+        needs: [build, test]
+        runs-on: ubuntu-latest
+        steps:
+            - name: Deploy
+              run: echo "Deploy Project"
