@@ -12,7 +12,7 @@ jobs:
               uses: actions/checkout@v4
             
             - name: Set Environment Variable
-             run: echo "PROJECT_NAME=Workflow Command Example" >> $GITHUB_ENV
+              run: echo "PROJECT_NAME=Workflow Command Example" >> $GITHUB_ENV
 
             - name: Run Command
               run: echo "Hello, $PROJECT_NAME"
