@@ -1,4 +1,4 @@
-name: Workflow Command Example
+name: WorkflowCommandExample
 
 on:
     workflow_dispatch:
