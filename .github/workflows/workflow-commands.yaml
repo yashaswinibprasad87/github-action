@@ -1,0 +1,43 @@
+name: Workflow Command Example
+
+on:
+    workflow_dispatch:
+
+jobs:
+    Commands:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout Code
+              uses: actions/checkout@v4
+            
+            - name: Set Environment Variable
+             run: echo "PROJECT_NAME=Workflow Command Example" >> $GITHUB_ENV
+
+            - name: Run Command
+              run: echo "Hello, $PROJECT_NAME"
+
+            - name: Generate Output
+              run: echo "::set-output name=project_name::$PROJECT_NAME"
+
+            - name: Debug Messgae
+              run: echo "::debug::This is a debug message"
+
+            - name: Warning Message
+              run: echo "::warning::This is a warning message"
+
+            - name: Error Message 
+              run: echo "::error::This is an error message"
+
+            - name: Group Messages
+              run: |
+                echo "::group::Grouping some messages"
+                echo "This is the first message"
+                echo "This is the second message"
+                uses: actions/setup-java@v3
+                with: 
+                    distribution: 'temurin'
+                    java-version: '17'
+                echo "::endgroup::"
+
+            
