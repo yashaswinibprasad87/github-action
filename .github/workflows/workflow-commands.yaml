@@ -1,4 +1,4 @@
-name: WorkflowCommandExample
+name: Workflow-Command
 
 on:
     workflow_dispatch:
@@ -29,15 +29,15 @@ jobs:
             - name: Error Message 
               run: echo "::error::This is an error message"
 
-            - name: Group Messages
+            - name: Group Messages, Set up JDK 17
               run: |
                 echo "::group::Grouping some messages"
                 echo "This is the first message"
                 echo "This is the second message"
-                uses: actions/setup-java@v3
-                with: 
-                    distribution: 'temurin'
-                    java-version: '17'
+                sudo apt update
+                sudo apt install -y openjdk-17-jdk
+          
+                echo "JDK 17 installation completed!"
                 echo "::endgroup::"
 
             
