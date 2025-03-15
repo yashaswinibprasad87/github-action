@@ -1,0 +1,34 @@
+name: Variables Example
+
+on:
+  workflow_dispatch:
+    inputs:
+      env:
+        description: "Environment"
+        required: true
+        default: "staging"
+
+jobs:
+  example:
+    runs-on: ubuntu-latest
+    env:
+      PROJECT_NAME: "MyApp"
+    steps:
+      - name: Print GitHub Variables
+        run: echo "Repo: ${{ github.repository }}, Branch: ${{ github.ref }}"
+
+      - name: Use Secrets
+        run: echo "API Key: ${{ secrets.API_KEY }}"
+
+      - name: Use Custom Vars
+        run: echo "Project: ${{ vars.PROJECT_NAME }}"
+
+      - name: Use Workflow Inputs
+        run: echo "Deploying to ${{ inputs.env }}"
+
+      - name: Set and Use Step Output
+        id: step1
+        run: echo "result=Success" >> $GITHUB_OUTPUT
+
+      - name: Use Step Output
+        run: echo "Step Result: ${{ steps.step1.outputs.result }}"
