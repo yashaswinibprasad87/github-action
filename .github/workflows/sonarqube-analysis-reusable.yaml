@@ -1,12 +1,7 @@
-name: SonarQube Called Workflow
+name: Reusable SonarQube Workflow
 
 on:
   workflow_call:
-    inputs:
-      repo-path:
-        description: "Path where the code is checked out"
-        required: true
-        type: string
     secrets:
       SONAR_TOKEN:
         required: true
@@ -15,15 +10,19 @@ jobs:
   sonar:
     runs-on: ubuntu-latest
     steps:
-      - name: Verify Repo Path Before Running SonarQube
+      - name: Restore Repository from Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: source-code
+          path: ${{ github.workspace }}
+
+      - name: Print Restored Repository Path
         run: |
-          echo "Checking repo path: ${{ inputs.repo-path }}"
-          ls -la ${{ inputs.repo-path }} 
-      - name: Change to Repository Directory
-        run: cd ${{ inputs.repo-path }} && ls -la
+          echo "Restored repository at: ${{ github.workspace }}"
+          ls -la ${{ github.workspace }}
 
       - name: Run SonarQube Scanner
-        working-directory: ${{ inputs.repo-path }}
+        working-directory: ${{ github.workspace }}
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: "https://sonarcloud.io"
