@@ -9,11 +9,11 @@ on:
 
 jobs:
   checkout-code:
-    uses: vcjain/github-action/.github/workflows/checkout-code.yaml@main
+    uses: vcjain/github-action/.github/workflows/reusable/checkout-code.yaml@main
 
   run-sonarqube:
     needs: checkout-code
-    uses: vcjain/github-actions/.github/workflows/sonarqube-analysis.yaml@main
+    uses: vcjain/github-actions/.github/workflows/reusable/sonarqube-analysis.yaml@main
     with:
       repo-path: ${{ needs.checkout-code.outputs.repo-path }}
     secrets:
