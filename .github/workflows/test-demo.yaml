@@ -7,5 +7,16 @@ jobs:
     build:
         runs-on: ubuntu-latest
         steps:
-            - name: checkout
-              uses: action/checkout@v2
+            - name: Checkout
+              uses: actions/checkout@v4
+
+            - name: Installing Java
+              run: sudo apt-get install openjdk-11-jdk -y
+            
+            - name: Compling Code
+              run: echo "Compiling Code" 
+
+            - name: Test Code
+              run: echo "Test Code" 
+
+            
