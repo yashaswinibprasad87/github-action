@@ -1,0 +1,28 @@
+name: SonarQube Workflow
+
+on:
+  workflow_call:
+    inputs:
+      repo-path:
+        description: "Path where the code is checked out"
+        required: true
+        type: string
+    secrets:
+      SONAR_TOKEN:
+        required: true
+
+jobs:
+  sonar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run SonarQube Scanner
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: "https://sonarcloud.io"
+        run: |
+          cd ${{ inputs.repo-path }}
+          mvn sonar:sonar \
+            -Dsonar.projectKey=sonardemo \
+            -Dsonar.organization=abc \
+            -Dsonar.host.url=$SONAR_HOST_URL \
+            -Dsonar.login=$SONAR_TOKEN

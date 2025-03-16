@@ -1,0 +1,17 @@
+name: Checkout Code Workflow
+
+on:
+  workflow_call:
+    outputs:
+      repo-path:
+        description: "Path where the code is checked out"
+        value: ${{ jobs.checkout.outputs.repo-path }}
+
+jobs:
+  checkout:
+    runs-on: ubuntu-latest
+    outputs:
+      repo-path: ${{ github.workspace }}
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
