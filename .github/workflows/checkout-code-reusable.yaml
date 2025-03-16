@@ -17,3 +17,6 @@ jobs:
         uses: actions/checkout@v4
       - name: Verify Files After Checkout
         run: ls -la ${{ github.workspace }}
+      - name: Print Repository Path Variable (`repo-path`)
+        run: |
+          echo "Repo Path Variable: ${{ job.checkout.outputs.repo-path }}"

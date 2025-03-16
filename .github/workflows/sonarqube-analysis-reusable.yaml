@@ -15,8 +15,13 @@ jobs:
   sonar:
     runs-on: ubuntu-latest
     steps:
+      - name: Verify Repo Path Before Running SonarQube
+        run: |
+          echo "Checking repo path: ${{ inputs.repo-path }}"
+          ls -la ${{ inputs.repo-path }} 
       - name: Change to Repository Directory
         run: cd ${{ inputs.repo-path }} && ls -la
+
       - name: Run SonarQube Scanner
         working-directory: ${{ inputs.repo-path }}
         env:
