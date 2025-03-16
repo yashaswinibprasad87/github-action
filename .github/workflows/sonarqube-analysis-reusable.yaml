@@ -15,12 +15,14 @@ jobs:
   sonar:
     runs-on: ubuntu-latest
     steps:
+      - name: Change to Repository Directory
+        run: cd ${{ inputs.repo-path }} && ls -la
       - name: Run SonarQube Scanner
+        working-directory: ${{ inputs.repo-path }}
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: "https://sonarcloud.io"
         run: |
-          cd ${{ inputs.repo-path }}
           mvn sonar:sonar \
             -Dsonar.projectKey=sonardemo \
             -Dsonar.organization=abc \
