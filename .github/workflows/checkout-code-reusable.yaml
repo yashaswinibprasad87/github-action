@@ -15,3 +15,5 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
+      - name: Verify Files After Checkout
+        run: ls -la ${{ github.workspace }}
