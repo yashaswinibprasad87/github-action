@@ -1,0 +1,28 @@
+name: Reusable Checkout Workflow
+
+on:
+  workflow_call:
+    outputs:
+      repo-path:
+        description: "Path where the code is checked out"
+        value: ${{ github.workspace }}
+
+jobs:
+  checkout:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Ensures full history is cloned
+
+      - name: Print Repository Path
+        run: |
+          echo "Repository is checked out at: ${{ github.workspace }}"
+          ls -la ${{ github.workspace }}
+
+      - name: Save Repository as Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: source-code
+          path: ${{ github.workspace }}

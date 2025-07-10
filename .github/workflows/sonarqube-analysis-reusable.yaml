@@ -1,0 +1,34 @@
+name: Reusable SonarQube Workflow
+
+on:
+  workflow_call:
+    secrets:
+      SONAR_TOKEN:
+        required: true
+
+jobs:
+  sonar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Restore Repository from Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: source-code
+          path: ${{ github.workspace }}
+
+      - name: Print Restored Repository Path
+        run: |
+          echo "Restored repository at: ${{ github.workspace }}"
+          ls -la ${{ github.workspace }}
+
+      - name: Run SonarQube Scanner
+        working-directory: ${{ github.workspace }}
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: "https://sonarcloud.io"
+        run: |
+          mvn sonar:sonar \
+            -Dsonar.projectKey=sonardemo \
+            -Dsonar.organization=vcjain \
+            -Dsonar.host.url=$SONAR_HOST_URL \
+            -Dsonar.login=$SONAR_TOKEN

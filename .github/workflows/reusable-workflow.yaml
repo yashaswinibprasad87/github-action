@@ -1,0 +1,18 @@
+name: Main Workflow
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+  workflow_dispatch:
+
+jobs:
+  checkout-code:
+    uses: vcjain/github-action/.github/workflows/checkout-code-reusable.yaml@main
+
+  run-sonarqube:
+    needs: checkout-code
+    uses: vcjain/github-action/.github/workflows/sonarqube-analysis-reusable.yaml@main
+    secrets:
+      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
