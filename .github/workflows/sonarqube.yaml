@@ -22,16 +22,11 @@ jobs:
           java-version: '17'
           cache: maven
 
-      - name: Cache Maven Dependencies
-        uses: actions/cache@v3
-        with:
-          path: ~/.m2
-          key: maven-${{ runner.os }}-${{ hashFiles('**/pom.xml') }}
-          restore-keys: |
-            maven-${{ runner.os }}-
-
       - name: Build and Test
         run: mvn clean verify
+      
+      - name: Run Tests
+        run: mvn verify jacoco:report
 
       - name: Run SonarQube Scanner
         env:
