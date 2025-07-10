@@ -20,7 +20,6 @@
   </properties>
 
   <dependencies>
-    <!-- JUnit 5 -->
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter</artifactId>
@@ -31,7 +30,6 @@
 
   <build>
     <plugins>
-      <!-- Compiler Plugin -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
@@ -42,7 +40,6 @@
         </configuration>
       </plugin>
 
-      <!-- JAR Plugin (for executable JAR) -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jar-plugin</artifactId>
@@ -58,7 +55,6 @@
         </configuration>
       </plugin>
 
-      <!-- Enforcer Plugin (ensure Java & Maven version) -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-enforcer-plugin</artifactId>
@@ -83,7 +79,6 @@
         </executions>
       </plugin>
 
-      <!-- JaCoCo Plugin -->
       <plugin>
         <groupId>org.jacoco</groupId>
         <artifactId>jacoco-maven-plugin</artifactId>
@@ -97,4 +92,13 @@
           </execution>
           <execution>
             <id>report</id>
-            <phase>verify</
+            <phase>verify</phase>
+            <goals>
+              <goal>report</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+</project>
