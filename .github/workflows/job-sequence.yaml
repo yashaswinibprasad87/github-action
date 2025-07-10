@@ -29,12 +29,8 @@ jobs:
                 name: jacoco-report
                 path: target/site/jacoco/index.html
 
-            
-            
-    
-              
     deploy:
-        needs: [build, test]
+        needs: [build]
         runs-on: ubuntu-latest
         steps:
             - name: Deploy
