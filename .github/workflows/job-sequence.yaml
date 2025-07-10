@@ -10,15 +10,28 @@ jobs:
         steps:
             - name: Checkout Code
               uses: actions/checkout@v4
-            - name: Build
-              run: echo "Compile & Build Project"          
+
+            - name: Setup Java
+              uses: actions/setup-java@v4
+              with:
+                distribution: 'temurin'
+                java-version: '17'
+
+            - name: Build with Maven
+              run: mvn clean package
+
+            - name: Run Tests
+              run: mvn verify jacoco:report
+            
+            - name: Upload JaCoCo Report
+              uses: actions/upload-artifact@v4
+              with:
+                name: jacoco-report
+                path: target/site/jacoco/index.html
+
+            
+            
     
-    test:
-        needs: build
-        runs-on: ubuntu-latest
-        steps:
-            - name: Test
-              run: echo "Run Test Cases"
               
     deploy:
         needs: [build, test]
