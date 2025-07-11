@@ -1,0 +1,28 @@
+name: TestDemo
+
+on:
+    workflow_dispatch:
+
+jobs:
+    build:
+        runs-on: ubuntu-latest # use lab for self-hosted runner
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+
+            - name: Compling Code
+              run: echo "Compiling Code" 
+
+            - name: Test Code
+              run: echo "Test Code" 
+            
+            - name: Slack Notification
+              uses: slackapi/slack-github-action@v1.20.0
+              with:
+                channel: '#test-demo'
+                text: 'Test Demo'
+                username: 'Test Demo'
+                icon_emoji: ':test:'
+                webhook_url: ${{ secrets.SLACK_WEBHOOK_URL }}
+
+            
