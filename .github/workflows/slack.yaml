@@ -1,4 +1,4 @@
-name: TestDemo
+name: Slack Demo
 
 on:
     workflow_dispatch:
