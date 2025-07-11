@@ -16,13 +16,17 @@ jobs:
             - name: Test Code
               run: echo "Test Code" 
             
-            - name: Slack Notification
-              uses: slackapi/slack-github-action@v1.20.0
-              with:
-                channel: '#test-demo'
-                text: 'Test Demo'
-                username: 'Test Demo'
-                icon_emoji: ':test:'
-                webhook_url: ${{ secrets.SLACK_WEBHOOK_URL }}
+            - name: Notify Slack on Success
+              if: success()
+              run: |
+                curl -X POST -H 'Content-type: application/json' \
+                --data '{"text":"Build and Tests succeeded on *TestDemo* workflow!"}' \
+                ${{ secrets.SLACK_WEBHOOK_URL }}
 
+            - name: Notify Slack on Failure
+              if: failure()
+              run: |
+                curl -X POST -H 'Content-type: application/json' \
+                --data '{"text":"Build or Tests failed on *TestDemo* workflow!"}' \
+                ${{ secrets.SLACK_WEBHOOK_URL }}
             
