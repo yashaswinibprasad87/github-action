@@ -16,12 +16,14 @@ jobs:
             - name: Test Code
               run: echo "Test Code" 
             
+         
             - name: Notify Slack on Success
               if: success()
               run: |
                 curl -X POST -H 'Content-type: application/json' \
                 --data '{"text":"Build and Tests succeeded on *TestDemo* workflow!"}' \
                 ${{ secrets.SLACK_WEBHOOK_URL }}
+
 
             - name: Notify Slack on Failure
               if: failure()
