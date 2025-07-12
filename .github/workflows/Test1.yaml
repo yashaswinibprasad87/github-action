@@ -1,11 +1,11 @@
-name: TestDemo
+name: Test Demo1
 
 on:
   workflow_dispatch:
 
 jobs:
   build:
-    runs-on: lab  # 👈 Targets your specific self-hosted runner with label 'lab'
+    runs-on: lab1  # 👈 Targets your specific self-hosted runner with label 'lab'
     steps:
       - name: Checkout
         uses: actions/checkout@v4
