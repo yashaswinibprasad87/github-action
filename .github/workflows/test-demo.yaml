@@ -2,9 +2,17 @@ name: TestDemo
 
 on:
     workflow_dispatch:
+        inputs:
+            is_build:
+                description: 'test'
+                required: true
+                default: false
 
 jobs:
     build:
+        env:
+            IS_BUILD: ${{ inputs.is_build}}
+        if: env.ISBUILD =='true'
         runs-on: demo-lab # use lab for self-hosted runner
         steps:
             - name: Checkout
