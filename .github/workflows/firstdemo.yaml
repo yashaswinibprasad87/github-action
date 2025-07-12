@@ -1,0 +1,15 @@
+name:First Demo
+
+on:
+  workflow_dispatch:
+
+Jobs:
+  build:
+    runs on: ubuntu latest
+    steps:
+      - name: Checkout code
+        user: actions/checkout@4
+
+      - name: Build
+        run: echo "BuildCode"
+
