@@ -9,7 +9,7 @@ jobs:
     runs on: ubuntu latest
     steps:
       - name: Checkout code
-        user: actions/checkout@4
+        user: actions/checkout@v4
 
       - name: Build
         run: echo "BuildCode"
