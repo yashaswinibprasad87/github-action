@@ -27,4 +27,15 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: jacoco-report
+          
+      - name: Run SonarQube Scanner
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: "https://sonarcloud.io"
+        run: |
+          mvn sonar:sonar \
+            -Dsonar.projectKey=firstproj \
+            -Dsonar.organization=myfirstorg \
+            -Dsonar.host.url=$SONAR_HOST_URL \
+            -Dsonar.login=$SONAR_TOKEN
           path: target/site/jacoco/index.html 
