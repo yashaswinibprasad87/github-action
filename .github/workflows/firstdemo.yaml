@@ -38,7 +38,7 @@ jobs:
           SONAR_HOST_URL: "https://sonarcloud.io"
         run: |
           mvn sonar:sonar \
-            -Dsonar.projectKey=myfirstorgyash \
+            -Dsonar.projectKey=yash_firstproj \
             -Dsonar.organization=myfirstorg \
             -Dsonar.host.url=$SONAR_HOST_URL \
             -Dsonar.login=$SONAR_TOKEN
