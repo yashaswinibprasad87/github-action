@@ -5,7 +5,7 @@ on:
 
 jobs:
     build:
-        runs-on: ubuntu-latest # use lab for self-hosted runner
+        runs-on: demo-lab # use lab for self-hosted runner
         steps:
             - name: Checkout
               uses: actions/checkout@v4
