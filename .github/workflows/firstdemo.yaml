@@ -3,6 +3,9 @@ name: First Demo
 
 on:
   workflow_dispatch:
+  push:
+    branches: 
+      - main
 
 jobs:
   build:
